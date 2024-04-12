@@ -6,21 +6,48 @@ const projectSchema = new Schema({
     type: String,
     required: true,
   },
-
-  description: {
-    type: String,
-  },
-
-  link: {
+  client: {
     type: String,
     required: true,
   },
-  image: {
+  date: {
+    type: String,
+    required: true,
+  },
+  projectUrl: {
     type: String,
   },
-  completed: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
+    required: true,
+  },
+  technologies: {
+    type: [String],
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  introduction: {
+    type: String,
+    required: true,
+  },
+  needs: {
+    type: String,
+    required: true,
+  },
+  solutions: {
+    type: String,
+    required: true,
+  },
+  challenges: {
+    type: String,
+    required: true,
+  },
+  images: {
+    type: [String],
+    required: true,
   },
   created_at: {
     type: Date,
