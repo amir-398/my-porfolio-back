@@ -1,11 +1,39 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-const projectSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
+const localizedContentSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      required: true,
+    },
+    introduction: {
+      type: String,
+      required: true,
+    },
+    needs: {
+      type: String,
+      required: true,
+    },
+    solutions: {
+      type: String,
+      required: true,
+    },
+    challenges: {
+      type: String,
+      required: true,
+    },
   },
+  { _id: false }
+);
+const projectSchema = new Schema({
   client: {
     type: String,
     required: true,
@@ -17,33 +45,13 @@ const projectSchema = new Schema({
   projectUrl: {
     type: String,
   },
-  role: {
-    type: String,
-    required: true,
-  },
   technologies: {
     type: [String],
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  introduction: {
-    type: String,
-    required: true,
-  },
-  needs: {
-    type: String,
-    required: true,
-  },
-  solutions: {
-    type: String,
-    required: true,
-  },
-  challenges: {
-    type: String,
-    required: true,
+  localization: {
+    fr: localizedContentSchema,
+    en: localizedContentSchema,
   },
   images: {
     type: [String],
@@ -59,4 +67,4 @@ const projectSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Project", projectSchema);
+module.exports = mongoose.model("projects", projectSchema);
