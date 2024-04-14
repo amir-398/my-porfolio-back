@@ -17,7 +17,6 @@ interface Project {
 
 exports.projectRegister = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
     const newProject = new Project(req.body);
     const project = await newProject.save();
     res.status(201).json({ message: `Projet crée ${project}` });
