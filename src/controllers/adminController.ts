@@ -46,7 +46,7 @@ exports.adminLogin = async (req: Request, res: Response) => {
 
     // Envoi du token
     res.cookie("token", token);
-    res.status(200).json({ message: "lol" });
+    res.status(200).json({ message: token });
   } catch (error) {
     console.log(error);
     res
