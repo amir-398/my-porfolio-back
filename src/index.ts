@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 app.use(cors());
-const port = "3001";
+const port = "5000";
 // app use swagger api documentation
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // const infoRoute = require("./routes/infoRoute");
