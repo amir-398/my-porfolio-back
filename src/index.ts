@@ -1,9 +1,11 @@
 const cors = require("cors");
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const adminRoute = require("./routes/adminRoute");
 const projectRoute = require("./routes/projectRoute");
 const app = express();
+app.use(cookieParser());
 app.use(cors());
 const port = "3001";
 
