@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 
 interface DecodedToken {
-  userId: string; // Adaptez selon la structure de votre token
+  userId: string;
   [key: string]: any;
 }
 declare module "express-serve-static-core" {
