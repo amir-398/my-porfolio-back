@@ -22,7 +22,6 @@ exports.adminLogin = async (req: Request, res: Response) => {
     // On récupère l'utilisateur par email
     const admin = await Admin.findOne({ identifiant: identifiant });
     if (!admin) {
-      // Il est souvent préférable de donner une réponse ambiguë pour des raisons de sécurité
       return res
         .status(401)
         .json({ message: "Email ou mot de passe incorrect" });
@@ -39,7 +38,6 @@ exports.adminLogin = async (req: Request, res: Response) => {
     // Création du payload pour JWT
     const payload = {
       id: admin.id,
-      email: admin.email,
     };
     // Générer un JWT
     const token = jwt.sign(payload, process.env.JWT_KEY, {
@@ -47,7 +45,8 @@ exports.adminLogin = async (req: Request, res: Response) => {
     });
 
     // Envoi du token
-    res.status(200).json({ token });
+    res.cookie("token", token);
+    res.status(200).json({ message: token });
   } catch (error) {
     console.log(error);
     res
@@ -79,5 +78,14 @@ exports.getAllAdmin = async (req: Request, res: Response) => {
     res.status(200).json(admin);
   } catch (err) {
     res.status(500).json(err);
+  }
+};
+
+exports.verifyToken = async (req: Request, res: Response) => {
+  if (req.cookies.token) {
+    // Valider le token ici, par exemple en vérifiant son intégrité et sa validité
+    res.status(200).json({ message: "Session valide" });
+  } else {
+    res.status(401).json({ message: "Session non valide" });
   }
 };
