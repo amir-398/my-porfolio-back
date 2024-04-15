@@ -13,15 +13,21 @@ app.use(cookieParser());
 app.use(cors());
 const port = "4000";
 // app use swagger api documentation
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+const infoRoute = require("./routes/infoRoute");
+
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // const infoRoute = require("./routes/infoRoute");
+
 // const adminRoute = require("./routes/adminRoute");
-mongoose.connect(process.env.MONGO_URI || "");
+mongoose.connect(process.env.MONGO_LOCAL_URI || "");
 app.use(express.urlencoded());
 app.use(express.json());
 
 app.use("/projects", projectRoute);
-// app.use("/infos", infoRoute);
+app.use("/infos", infoRoute);
 app.use("/", adminRoute);
 // app.use("/", sendEmailRoute);
 

@@ -1,40 +1,39 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
-
 /**
  * @openapi
- * /api/admin/register:
+ * /register:
  *   post:
- *     summary: Register a new admin
- *     description: Registers a new admin with username and password.
+ *     summary: Enregistre un nouvel utilisateur
+ *     description: Crée un nouveau compte utilisateur
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - username
- *               - password
  *             properties:
- *               username:
+ *               identifiant:
  *                 type: string
- *                 description: Admin's username
+ *                 default: "amir.4000@hotmail.fr"
  *               password:
  *                 type: string
- *                 description: Admin's password
+ *                 default: "12345A@"
+ *
  *     responses:
- *       200:
- *         description: Admin registered successfully
+ *       201:
+ *         description: Utilisateur créé avec succès
  *       400:
- *         description: Error in registration
+ *         description: Erreur de requête
+ *     tags:
+ *      - Users
  */
 router.route("/register").post(adminController.adminRegister);
 
 /**
  * @openapi
- * /api/admin/login:
+ * /login:
  *   post:
  *     summary: Admin login
  *     description: Authenticates an admin and returns a token.
@@ -48,17 +47,21 @@ router.route("/register").post(adminController.adminRegister);
  *               - username
  *               - password
  *             properties:
- *               username:
+ *               identifiant:
  *                 type: string
  *                 description: Admin's username
+ *                 default : "amir.4000@hotmail.fr"
  *               password:
  *                 type: string
  *                 description: Admin's password
+ *                 default : "12345A@"
  *     responses:
  *       200:
  *         description: Login successful, token returned
  *       401:
  *         description: Unauthorized, invalid username or password
+ *     tags:
+ *      - Users
  */
 router.route("/login").post(adminController.adminLogin);
 
@@ -80,6 +83,8 @@ router.route("/login").post(adminController.adminLogin);
  *         description: Token is valid
  *       401:
  *         description: Token is invalid or expired
+ *     tags:
+ *      - Users
  */
 router.route("/verifyToken").get(adminController.verifyToken);
 
