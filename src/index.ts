@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
 const cors = require("cors");
-// const swaggerUi = require("swagger-ui-express");
+const swaggerUi = require("swagger-ui-express");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const adminRoute = require("./routes/adminRoute");
 const projectRoute = require("./routes/projectRoute");
-// const swaggerDocs = require("./swaggerOptions");
+const swaggerDocs = require("./swaggerOptions");
 dotenv.config();
 const app = express();
 app.use(cookieParser());
@@ -22,7 +22,7 @@ const infoRoute = require("./routes/infoRoute");
 // const infoRoute = require("./routes/infoRoute");
 
 // const adminRoute = require("./routes/adminRoute");
-mongoose.connect(process.env.MONGO_LOCAL_URI || "");
+mongoose.connect(process.env.MONGO_URI || "");
 app.use(express.urlencoded());
 app.use(express.json());
 

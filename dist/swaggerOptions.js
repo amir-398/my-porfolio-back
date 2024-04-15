@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerOptions = {
     definition: {
-        openapi: "3.0.0", // Utilisation de la version 3.0.0 pour la meilleure compatibilité
+        openapi: "3.1.0", // Utilisation de la version 3.0.0 pour la meilleure compatibilité
         info: {
             title: "Portfolio API",
             version: "0.1.0",
@@ -19,7 +19,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: "http://localhost:3001",
+                url: "http://localhost:4000",
             },
         ],
         components: {
@@ -32,7 +32,7 @@ const swaggerOptions = {
             },
         },
     },
-    apis: ["./routes/*.ts"], // Assurez-vous que ce chemin est correct pour votre structure de projet
+    apis: ["./src/routes/*.ts"], // Assurez-vous que ce chemin est correct pour votre structure de projet
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 module.exports = swaggerDocs;
